@@ -1,5 +1,5 @@
 # Tutorials and Extensions for Tomlab
-This repository contains examples of using tomlab and auto-differentiation.  To use it, you will need to install Tomlab with a license.
+This repository contains examples of using tomlab and auto-differentiation.  To use it, you will need to install Tomlab with a license.  The tutorial slides are in [/tutorial/tomlab_AD_presentation.pdf](https://github.com/econtoolkit/tomlab/raw/master/tutorial/tomlab_AD_presentation.pdf) and the files are in the /tutorial subfolder.
 
 ## Setup
 You will need to download tomlab and get a license file.
@@ -12,6 +12,7 @@ You will need to download tomlab and get a license file.
 * To use Tomlab in your matlab code, you have two choices:
    1. Execute the `startup.m` matlab file in the tomlab root directory prior to using the library
    2. Add the tomlab root directory to the usual matlab paths with `Set Path`.  Matlab will then execute this `startup.m` automatically when you run matlab and you never need to worry about it again. However, this will slow down the startup time for matlab.
+* Read through the slides in [/tutorial/tomlab_AD_presentation.pdf](https://github.com/econtoolkit/tomlab/raw/master/tutorial/tomlab_AD_presentation.pdf)
 
 ## Licenses within Tomlab
 Tomlab has an abstract method to create an optimization `problem`, and makes it easy to swap out which optimizer you are using and find the best. For example, given a `Prob` you could choose `tomRun('knitro', Prob)` vs. `tomRun('npsol', Prob)`
