@@ -14,14 +14,14 @@ b = [.1; .2]; %right hand side.
 %But this can also be auto-differentiated!  Note the derivatives.
 [1 0; 0 a] \ b
 
-%Can also do much crazier setups, such as [1 0; 0 a] [x_1; x_2] = [.1; .2]
+%Can also do much crazier setups, such as [a^2 0; 0 a] [x_1; x_2] = b
 a_val = 1.4
 a = fmad(a_val, 1); %Creates an `a` variable
 [a^2 0; 0 a] \ b
 
 %For sparse systems:
 sparse_b = sparse(b);
-A_sparse = sparse([1;2],[1;2],[1;a]);
+A_sparse = sparse([1;2],[1;2],[1;a]); %Creates the [1 0; 0 a] sparse matrix.
 %Display in full form, including derivatives with respect to `a`
 full(A_sparse)
 
