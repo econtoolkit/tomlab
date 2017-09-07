@@ -109,7 +109,7 @@ $$
 		\item Implementation is language dependent.  Two approaches:
 		\begin{itemize}
 			\item \textit{Source code transformation:} utility (outside of the language itself) reads in the code for your function, and generates a function which calculates value and derivative.  Rerun if you change your code
-			\item \textit{Operator Overloading:} Takes your existing functions, and passes variables that act like numbers, but are actually recording and tracing the chain rule steps/etc.  Can be magical, or infuriating
+			\item \textit{Operator Overloading:} Takes your existing functions, and passes variables that act like numbers, but are actually recording and tracing the chain rule steps/etc.  Can be magical, or can be infuriating
 		\end{itemize}
 		\item Implementation depends on the language:
 		\begin{itemize}
@@ -234,6 +234,7 @@ After installing tomlab, open up matlab and type \verb!tomRun! to get a list of 
 		\item Use the UBC Matlab license
 		\begin{itemize}
 			\item If you aren't sure what you have, open matlab, type 'license' and check the nubmer is '924490'.  Otherwise, follow department/ubc instructions
+			\item UBC Economics can download \url{http://jesseperla.com/tomlab/tomlab.lic}
 		\end{itemize}
 		\item Download Tomlab from the site or 
 		\begin{itemize}
@@ -241,7 +242,7 @@ After installing tomlab, open up matlab and type \verb!tomRun! to get a list of 
 			\item or \url{http://tomopt.com/dist/tomlab-osx64-clang-setup.dmg}
 		\end{itemize}
 		\item Run to install it
-		\item Put \url{http://jesseperla.com/tomlab/tomlab.lic} into main tomlab directory (with the startup.m file)
+		\item Put license file goes in the root of the main tomlab directory (i.e., the one with the \verb!startup.m! file)
 		\item You now have two choices:
 		\begin{itemize}
 			\item Whenever you want to use it, run the \verb!startup.m! script in tomlab
@@ -267,6 +268,7 @@ After installing tomlab, open up matlab and type \verb!tomRun! to get a list of 
 		\item Though if there are linear constraints, $A$, may be helpful
 		\item Major benefit for large, sparse $C$
 		\item See ``Section 11. LLS Problem'' in \url{http://tomopt.com/docs/TOMLAB_QUICKGUIDE.pdf}
+		\item Matlab also has a built in sparse linear least squares solver
 	\end{itemize}
 \end{frame}
 
@@ -586,12 +588,14 @@ end
 \begin{itemize}
 	\item See MAD manual, \url{http://tomopt.com/docs/TOMLAB_MAD.pdf}
 	\item Section: \verb!"Adding Functions to the fmad Class"!
-	\item Example, \verb!normcdf! isn't there, could add something like (untested):
+	\item See extensions in in \url{https://github.com/econtoolkit/tomlab/MAD}
+	\item Example, \verb!normcdf! isn't there, could add something like:
 \end{itemize}
 
 \begin{minted}[fontsize=\footnotesize]{matlab}
 %Add to the appropriate location in tomlab
 %This should work for vectors/matrices since using .*
+%This has not been sufficiently tested!
 function y=normcdf(x)
 	y = x; %Needs to copy		
 	y.value= normcdf(x.value); %Evaluate given double 
@@ -646,9 +650,7 @@ Tomlab has excellent examples and documentation:
 	
 
 \begin{frame}[fragile]	\frametitle{These Slides, Examples, Etc.}
-See \url{https://github.com/econtoolkit/tomlab}, and in particular 
-\url{http://jesseperla.com/tomlab/tomlab_AD_presentation.pdf}\\
-\url{http://jesseperla.com/tomlab/tomlab_AD_examples.zip}
+See \url{https://github.com/econtoolkit/tomlab/tutorial}
 	\begin{itemize}
 			\item \verb!teacher_student_fixed_effect.m!: contains LLS example, including reading raw data and generating sparse matrix.  Raw data is in \verb!student_teacher_raw.mat!, and it  generates sparse data in \verb!teacher_student_data.mat!
 			\item \verb!portfolio_choice.m!: Includes all sorts of variations on the NLP problem discussed.  For the external functions, it calls \verb!portfolio_constraint.m! and \verb!portfolio_objective.m!
